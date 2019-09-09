@@ -1,0 +1,31 @@
+type User {
+    id: ID! @id
+    name: String
+    email: String! @unique
+    password: String!
+    phoneNumber: String!
+    writtenPosts: [Post!]! @relation(name: "WrittenPosts")
+    likedPosts: [Post!]! @relation(name: "LikedPosts")
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+}
+
+type Post {
+    id: ID! @id
+    description: String!
+    imageUrl: String!
+    author: User! @relation(name: "WrittenPosts")
+    likedBy: [User!]! @relation(name: "LikedPosts")
+    comments: [Comment!]!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+}
+
+type Comment {
+    id: ID! @id
+    user: User!
+    comment: String!
+    post: Post!
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime! @updatedAt
+}

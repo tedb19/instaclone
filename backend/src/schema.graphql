@@ -1,0 +1,29 @@
+# import Post, Comment, PostOrderByInput from "../prisma/generated/prisma.graphql"
+
+type Query {
+  info: String
+  feed(filter: String, first: Int, skip: Int, orderBy: PostOrderByInput): Feed!
+}
+
+type Mutation {
+  createPost(description: String!, imageUrl: String!): Post!
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type Feed {
+  posts: [Post!]!
+  count: Int!
+}
+
+type User {
+  id: ID!
+  name: String
+  email: String!
+  phoneNumber: String!
+  writtenPosts: [Post!]!
+  likedPosts: [Post!]!
+}
