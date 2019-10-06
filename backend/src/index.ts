@@ -14,11 +14,10 @@ const server = new GraphQLServer({
 const options = {
   port: 8000,
   endpoint: '/graphql',
-  tracing: true
+  tracing: true,
+  debug: process.env.NODE_ENV === 'dev'
 }
 
 server.start(options, ({ port }) =>
-  console.log(
-    `Server started, listening on port ${port} for incoming requests.`
-  )
+  console.log(`Server started @ http://localhost:${port}/graphql`)
 )
