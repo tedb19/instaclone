@@ -6,7 +6,16 @@ datamodel: datamodel.prisma
 
 # specifies the language and location for the generated prisma client
 generate:
-  - generator: javascript-client
-    output: ./generated/prisma-client
+  - generator: typescript-client
+    output: ../src/generated/prisma-client
   - generator: graphql-schema # for the schema imports
-    output: ./generated/prisma.graphql
+    output: ../src/generated/prisma.graphql
+
+# Seeds initial data into the database by running a script.
+seed:
+  run: yarn ts-node ./prisma/seed.ts
+
+# Ensures Prisma client is re-generated after a datamodel change.
+hooks:
+  post-deploy:
+    - prisma generate

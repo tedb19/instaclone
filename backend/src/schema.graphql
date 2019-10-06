@@ -1,4 +1,4 @@
-# import Post, Comment, PostOrderByInput from "../prisma/generated/prisma.graphql"
+# import Post, Comment, PostOrderByInput from "./generated/prisma.graphql"
 
 type Query {
   info: String
