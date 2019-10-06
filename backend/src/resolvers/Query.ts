@@ -22,5 +22,14 @@ export const Query = {
       posts,
       count
     }
+  },
+
+  me(parent, args, ctx: Context) {
+    const id = getUserId(ctx)
+    return ctx.prisma.user({ id })
+  },
+
+  post(parent, { id }, ctx: Context) {
+    return ctx.prisma.post({ id })
   }
 }

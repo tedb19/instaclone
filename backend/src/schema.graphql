@@ -1,8 +1,9 @@
 # import Post, Comment, PostOrderByInput from "./generated/prisma.graphql"
 
 type Query {
-  info: String
+  me: User
   feed(filter: String, first: Int, skip: Int, orderBy: PostOrderByInput): Feed!
+  post(id: ID!): Post
 }
 
 type Mutation {
